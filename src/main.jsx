@@ -18,18 +18,6 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-// Load a specific image from Firebase Storage and update img element
-const storage = getStorage();
-const storageRef = ref(storage, 'gs://hossam-zahwo.appspot.com/LOGO.png');
-getDownloadURL(storageRef).then((url) => {
-  const img = document.getElementById('logo-img');
-  if (img) {
-    img.src = url;
-  }
-}).catch((error) => {
-  console.error("Error getting download URL:", error);
-});
-
 // Render the application
 createRoot(document.getElementById('root')).render(
   <StrictMode>
