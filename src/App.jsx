@@ -11,13 +11,20 @@ import { IoIosArrowUp } from "react-icons/io";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-function App() {
+function App({ getAllImages }) {
   const [showScroll, setShowScroll] = useState(false);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     AOS.init({
       duration: 1200,
     });
+
+    const fetchImages = async () => {
+      const imgs = await getAllImages();
+      setImages(imgs);
+    };
+    fetchImages();
 
     const checkScrollTop = () => {
       if (!showScroll && window.pageYOffset > 200) {
@@ -32,7 +39,7 @@ function App() {
     return () => {
       window.removeEventListener('scroll', checkScrollTop);
     };
-  }, [showScroll]);
+  }, [showScroll, getAllImages]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,7 +70,11 @@ function App() {
       >
         <IoIosArrowUp />
       </button>
-    
+      <div>
+        {images.map((url, index) => (
+          <img key={index} src={url} alt={`Image ${index + 1}`} />
+        ))}
+      </div>
     </div>
   );
 }

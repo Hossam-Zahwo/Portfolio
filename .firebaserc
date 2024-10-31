@@ -23,5 +23,8 @@
         ]
       }
     ]
+  },
+  "projects": {
+    "default": "hossam-zahwo"
   }
 }
