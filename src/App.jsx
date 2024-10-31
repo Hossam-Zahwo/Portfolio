@@ -24,6 +24,7 @@ function App({ getAllImages }) {
       const imgs = await getAllImages();
       setImages(imgs);
     };
+
     fetchImages();
 
     const checkScrollTop = () => {
@@ -71,6 +72,7 @@ function App({ getAllImages }) {
         <IoIosArrowUp />
       </button>
       <div>
+      
         {images.map((url, index) => (
           <img key={index} src={url} alt={`Image ${index + 1}`} />
         ))}
